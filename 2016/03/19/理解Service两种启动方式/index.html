@@ -64,7 +64,7 @@
 <meta property="og:site_name" content="UKIY'S HOME">
 <meta property="og:description" content="Service作为四大组件之一，在Android中扮演着处理后台任务的角色，比如后台下载啦，后台轮询啦，后台放音乐啦，反正一切和UI无关的耗时操作都可以丢给它来做，需要注意的是，Service和Activity一样，也是运行在主线程的哦，所以如果直接在其onCreate()，onStartCommand()等函数中直接进行耗时操作，可是会导致ANR错误的。More generally，四大组件都是">
 <meta property="og:image" content="http://7xs2xe.com1.z0.glb.clouddn.com/blog_service_lifecycle.png">
-<meta property="og:updated_time" content="2016-03-21T13:27:44.000Z">
+<meta property="og:updated_time" content="2016-03-21T14:26:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="理解Service两种启动方式">
 <meta name="twitter:description" content="Service作为四大组件之一，在Android中扮演着处理后台任务的角色，比如后台下载啦，后台轮询啦，后台放音乐啦，反正一切和UI无关的耗时操作都可以丢给它来做，需要注意的是，Service和Activity一样，也是运行在主线程的哦，所以如果直接在其onCreate()，onStartCommand()等函数中直接进行耗时操作，可是会导致ANR错误的。More generally，四大组件都是">
@@ -144,7 +144,7 @@
             
               <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
-            Startseite
+            Accueil
           </a>
         </li>
       
@@ -154,7 +154,7 @@
             
               <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -217,7 +217,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posté le</span>
             <time itemprop="dateCreated" datetime="2016-03-19T22:54:33+08:00" content="2016-03-19">
               2016-03-19
             </time>
@@ -247,11 +247,14 @@
       
         <p>Service作为四大组件之一，在Android中扮演着处理后台任务的角色，比如后台下载啦，后台轮询啦，后台放音乐啦，反正一切和UI无关的耗时操作都可以丢给它来做，需要注意的是，Service和Activity一样，也是运行在主线程的哦，所以如果直接在其<code>onCreate()</code>，<code>onStartCommand()</code>等函数中直接进行耗时操作，可是会导致ANR错误的。More generally，四大组件都是运行在主线程里的呢~</p>
 <p>有人可能要说，本来还以为你Service可以做些耗时的后台操作，现在搞得和Activity一样也运行在主线程，那我还要你作甚，还不如我直接在Activity里直接开个线程来处理咧。那么现在请考虑这样一个场景，我在Activity中点击了一个按钮，开启了一个线程进行下载操作，由于这个文件实在太大，用户不想一直在这个页面等着，于是点了返回按钮，这下好了，进行下载的Thread变成了一个孤儿了，由于它所属的Activity被从任务栈中弹出，它变得完全不可控，而且还会造成内存泄露！可能又有人要说，我在Activity的<code>onPause()</code>方法里把这个Thread结束掉不就完啦。可这样的话，当用户再回来看这个页面的时候该抱怨了：等了这么久，你丫竟然偷懒，没在给我下载啊？Android问：谁能担此大任？这时，只见小朋友们四大组件中，钻出来一个Service，说道：我来！</p>
-<p>Service也有自己的一套独立于Activity的生命周期，这使得它能够在Activity结束后仍能够继续下载。Service的生命周期与它的两种启动方式有关：</p>
+<h2 id="两种启动方式的生命周期"><a href="#两种启动方式的生命周期" class="headerlink" title="两种启动方式的生命周期"></a>两种启动方式的生命周期</h2><p>Service也有自己的一套独立于Activity的生命周期，这使得它能够在Activity结束后仍能够继续下载。Service的生命周期与它的两种启动方式有关：</p>
 <p><img src="http://7xs2xe.com1.z0.glb.clouddn.com/blog_service_lifecycle.png" alt=""></p>
-<p>既然两种方法都能够启动Service，那么这两种方式有啥区别呢，举一个很通俗的例子，如果说Service是一个老师，现在你想让你的儿子（参数）接受老师的教育（后台操作），有两种方法，一种是直接把儿子送到老师那儿上课，一种是把老师请到家里来教。前者就相当于<code>startService(mIntent)</code>，你需要做的就是把儿子送上校车（Intent），好处就是把儿子送走后你就不用管了，该上班上班，该买菜买菜，缺点是校车只能接送int，double，String等基本类型的孩子，如果是自定义类型，那就只有办个vip（继承Parcelable或者Serializable接口）才能上车；后者就像<code>bindService</code>，你需要做的就是把老师请到家里来（<code>bindService()</code>），然后等老师教完儿子后再把老师送走（<code>unBindService()</code>），好处就是儿子不用出门了（废话），缺点就是得接待老师。说完这些是不是理解一些了呢。</p>
-<p>下面我们来看看它们的具体操作，就拿后台下载这个例子来说吧。</p>
-<h3 id="使用startService"><a href="#使用startService" class="headerlink" title="使用startService"></a>使用startService</h3><p>我们首先定义一个MyService类</p>
+<p>既然两种方法都能够启动Service，那么这两种方式有啥区别呢，举一个很通俗的例子</p>
+<blockquote>
+<p>如果说Service是一个老师，现在你想让你的儿子（参数）接受老师的教育（后台操作），有两种方法，一种是直接把儿子送到老师那儿上课，一种是把老师请到家里来教。前者就相当于<code>startService(mIntent)</code>，你需要做的就是把儿子送上校车（Intent），好处就是把儿子送走后你就不用管了，该上班上班，该买菜买菜，缺点是校车只能接送int，double，String等基本类型的孩子，如果是自定义类型，那就只有办个vip（继承Parcelable或者Serializable接口）才能上车；后者就像<code>bindService</code>，你需要做的就是把老师请到家里来（<code>bindService()</code>），然后等老师教完儿子后再把老师送走（<code>unBindService()</code>），好处就是儿子不用出门了（废话），缺点就是得接待老师。</p>
+</blockquote>
+<p>说完这些是不是理解一些了呢，下面我们来看看它们的具体操作，就拿后台下载这个例子来说吧。</p>
+<h2 id="使用startService"><a href="#使用startService" class="headerlink" title="使用startService"></a>使用startService</h2><p>我们首先定义一个MyService类</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyService</span> <span class="keyword">extends</span> <span class="title">Service</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">download</span><span class="params">(<span class="keyword">final</span> Callback callback)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> Thread() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    sleep(<span class="number">2000</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">                callback.onDone();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;.start();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">onStartCommand</span><span class="params">(Intent intent, <span class="keyword">int</span> flags, <span class="keyword">int</span> startId)</span> </span>&#123;</span><br><span class="line">        Callback callback = (Callback) intent.getSerializableExtra(<span class="string">"callback"</span>);<span class="comment">//获取回调</span></span><br><span class="line">        download(callback);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.onStartCommand(intent, flags, startId);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> IBinder <span class="title">onBind</span><span class="params">(Intent intent)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Callback</span> <span class="keyword">extends</span> <span class="title">Serializable</span></span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">onDone</span><span class="params">()</span></span>;<span class="comment">//下载完成的回调</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>我们定义了一个下载的函数<code>download()</code>，里面开启线程模拟下载操作，在下载完成后执行回调<code>callback.onDone()</code>，回调是一个自定义的接口<code>Callback</code>继承了<code>Serializable</code>，为啥咧？上面说过，因为Intent能传递的参数种类十分有限，这也算是一种妥协吧。Service定义好了，接下来在Activity中启动它。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Intent intent = <span class="keyword">new</span> Intent(<span class="keyword">this</span>, MyService.class);</span><br><span class="line">intent.putExtra(<span class="string">"callback"</span>, <span class="keyword">new</span> MyService.Callback()&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDone</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		Log.d(<span class="string">"MainActivity"</span>, <span class="string">"done in start!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">startService(intent);</span><br></pre></td></tr></table></figure>
@@ -259,7 +262,8 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">MyCallback</span> <span class="keyword">implements</span> <span class="title">MyService</span>.<span class="title">Callback</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDone</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Log.d(<span class="string">"MainActivity"</span>, <span class="string">"done in start!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>要注意，千万不要把非基本类型且非继承<code>Serializable</code>或<code>Parcelable</code>的类传进来当做成员变量使用，不然又绕回去了，真是如履薄冰呢。把原来启动Service的代码改成下面这样，点击运行按钮，不出所料的话2秒后就会打印出“done in start!”。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Intent intent = <span class="keyword">new</span> Intent(<span class="keyword">this</span>, MyService.class);</span><br><span class="line">intent.putExtra(<span class="string">"callback"</span>, <span class="keyword">new</span> MyCallback());</span><br><span class="line">startService(intent);</span><br></pre></td></tr></table></figure>
-<p>是不是感觉做件这么简单的事竟然这么啰嗦，这就是<code>startService</code>的不足之处，传递自定义类型的时候束缚很多。但是如果仅仅传递基本类型的话还是很方便哒。下面来介绍一下使用<code>bindService</code>方式来做同样一件事，对比它们的异同。直接在MyService类中添加一个类<code>MyBinder</code>，还拿上面送小孩上学的例子来说，这个类就相当于是一个专门送老师上门的车，在里面我们声明一个public函数，返回当前<code>MyService</code>实例（其实应该返回一个代理，这样可以隐藏Service里的一些细节，减少耦合度，这里只是为了方便），并且修改<code>onBind</code>函数的返回值，返回一个<code>Mybinder</code>的实例：</p>
+<p>是不是感觉做件这么简单的事竟然这么啰嗦，这就是<code>startService</code>的不足之处，传递自定义类型的时候束缚很多。但是如果仅仅传递基本类型的话还是很方便哒。</p>
+<h2 id="使用bindService"><a href="#使用bindService" class="headerlink" title="使用bindService"></a>使用bindService</h2><p>下面来介绍一下使用<code>bindService</code>方式来做同样一件事，对比它们的异同。直接在MyService类中添加一个类<code>MyBinder</code>，还拿上面送小孩上学的例子来说，这个类就相当于是一个专门送老师上门的车，在里面我们声明一个public函数，返回当前<code>MyService</code>实例（其实应该返回一个代理，这样可以隐藏Service里的一些细节，减少耦合度，这里只是为了方便），并且修改<code>onBind</code>函数的返回值，返回一个<code>Mybinder</code>的实例：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> IBinder <span class="title">onBind</span><span class="params">(Intent intent)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> MyBinder();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyBinder</span> <span class="keyword">extends</span> <span class="title">Binder</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> MyService <span class="title">getService</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> MyService.<span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>接下来回到Activity中，我们定义一个变量实现<code>ServiceConnection</code>接口，这个接口就相当于是<code>bindService</code>的回调：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> ServiceConnection conn = <span class="keyword">new</span> ServiceConnection() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onServiceConnected</span><span class="params">(ComponentName name, IBinder service)</span> </span>&#123;</span><br><span class="line">        MyService myService = ((MyService.MyBinder) service).getService();</span><br><span class="line">        myService.download(<span class="keyword">new</span> MyService.Callback() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDone</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                Log.d(<span class="string">"MainActivity"</span>, <span class="string">"done in bind!"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        unbindService(<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onServiceDisconnected</span><span class="params">(ComponentName name)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
@@ -347,10 +351,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Inhaltsverzeichnis
+            Table Des Matières
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Übersicht
+            Ensemble
           </li>
         </ul>
       
@@ -367,7 +371,7 @@
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">2</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-name">articles</span>
             </a>
           </div>
 
@@ -377,7 +381,7 @@
             <div class="site-state-item site-state-tags">
               <a href="/tags">
                 <span class="site-state-item-count">2</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-name">tags</span>
               </a>
             </div>
           
@@ -410,7 +414,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用startService"><span class="nav-number">1.</span> <span class="nav-text">使用startService</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结："><span class="nav-number"></span> <span class="nav-text">总结：</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#两种启动方式的生命周期"><span class="nav-number">1.</span> <span class="nav-text">两种启动方式的生命周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用startService"><span class="nav-number">2.</span> <span class="nav-text">使用startService</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用bindService"><span class="nav-number">3.</span> <span class="nav-text">使用bindService</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结："><span class="nav-number">4.</span> <span class="nav-text">总结：</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -440,11 +444,11 @@
 </div>
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
-  Theme -
+  Thème -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Mist
   </a>
