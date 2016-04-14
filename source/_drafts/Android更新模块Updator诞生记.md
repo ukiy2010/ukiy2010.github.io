@@ -1,6 +1,5 @@
 ---
-title: 基于Android更新模块的设计与实现
-date: 2016-03-23 20:19:21
+title: Android更新模块Updator诞生记
 tags:
   - Android
   - 功能模块化
