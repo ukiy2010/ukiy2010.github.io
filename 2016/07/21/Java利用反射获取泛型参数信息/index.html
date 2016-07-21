@@ -65,7 +65,7 @@
 <meta property="og:site_name" content="UKIY'S HOME">
 <meta property="og:description" content="由于Java的类型擦除，对象（或者局部变量）本身不会存储任何泛型信息，但是泛型的信息会存储在Class字节码中，可以通过反射去获取到它们。比如下代码：
 1234567class Cls&amp;lt;T&amp;gt; extends ArrayList&amp;lt;Integer&amp;gt; implements List&amp;lt;Integer&amp;gt;&amp;#123;  List&amp;lt;String&amp;gt; field;">
-<meta property="og:updated_time" content="2016-07-21T12:09:39.000Z">
+<meta property="og:updated_time" content="2016-07-21T12:17:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java利用反射获取泛型参数信息">
 <meta name="twitter:description" content="由于Java的类型擦除，对象（或者局部变量）本身不会存储任何泛型信息，但是泛型的信息会存储在Class字节码中，可以通过反射去获取到它们。比如下代码：
@@ -273,19 +273,19 @@
 <p><code>ParameterizedType</code>和<code>Class</code>都继承自Type，<code>class.getSuperclass()</code>和<code>class.getGenericSuperclass()</code>的区别是，前者返回Class，后者返回Type，举例来说<code>Cls.class.getSuperclass()</code>得到的是ArrayList，<code>Cls.class.getGenericSuperclass()</code>得到的是<code>ArrayList&lt;Integer&gt;</code>，强制转换成<code>ParameterizedType</code>后可以得到泛型参数的信息。</p>
 </blockquote>
 <p>获取本类的类型参数，返回<code>T</code>：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cls.class.getTypeParameters()[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cls.class.getTypeParameters()[<span class="number">0</span>];</span><br></pre></td></tr></table></figure>
 <p>获取父类的类型参数，返回<code>Integer</code>：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">((ParameterizedType)Cls.class.getGenericSuperclass()).getActualTypeArguments()[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">((ParameterizedType) Cls.class.getGenericSuperclass())</span><br><span class="line">.getActualTypeArguments()[<span class="number">0</span>];</span><br></pre></td></tr></table></figure>
 <p>获取所继承接口（第i个）的类型参数，返回<code>Integer</code>：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">((ParameterizedType) Cls.class.getGenericInterfaces()[i]).getActualTypeArguments()[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">((ParameterizedType) Cls.class.getGenericInterfaces()[i])</span><br><span class="line">.getActualTypeArguments()[<span class="number">0</span>];</span><br></pre></td></tr></table></figure>
 <p>获取方法参数（第i个）的类型参数，返回<code>String</code>：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">((ParameterizedType) getClass().getDeclaredMethod(<span class="string">"method"</span>, List.class).getGenericParameterTypes()[i]).getActualTypeArguments()[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">((ParameterizedType) getClass().getDeclaredMethod(<span class="string">"method"</span>, List.class)</span><br><span class="line"> .getGenericParameterTypes()[i]).getActualTypeArguments()[<span class="number">0</span>];</span><br></pre></td></tr></table></figure>
 <p>获取方法返回值的类型参数，返回<code>String</code>：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">((ParameterizedType) getClass().getDeclaredMethod(<span class="string">"method"</span>, List.class).getGenericReturnType()).getActualTypeArguments()[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">((ParameterizedType) getClass().getDeclaredMethod(<span class="string">"method"</span>, List.class)</span><br><span class="line"> .getGenericReturnType()).getActualTypeArguments()[<span class="number">0</span>];</span><br></pre></td></tr></table></figure>
 <p>获取方法的类型参数，返回<code>V</code>：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getClass().getDeclaredMethod(<span class="string">"method"</span>, List.class).getTypeParameters()[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getClass().getDeclaredMethod(<span class="string">"method"</span>, List.class).getTypeParameters()[<span class="number">0</span>];</span><br></pre></td></tr></table></figure>
 <p>获取字段的类型参数，返回<code>String</code>：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">((ParameterizedType) Cls.class.getDeclaredField(<span class="string">"field"</span>).getGenericType()).getActualTypeArguments()[<span class="number">0</span>];</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">((ParameterizedType) Cls.class.getDeclaredField(<span class="string">"field"</span>)</span><br><span class="line"> .getGenericType()).getActualTypeArguments()[<span class="number">0</span>];</span><br></pre></td></tr></table></figure>
 <hr>
 <p>在获取方法的时候<code>method.getDeclaredMethod(&quot;method&quot;, List.class)</code>第二个参数，表示方法的参数类型列表，如果是基本类型则用<code>XX.TYPE</code>或者<code>xx.class</code>，例如：<code>int</code>对应<code>Integer.TYPE</code>或者<code>int.class</code>，<code>long</code>对应<code>Long.TYPE</code>或者<code>long.class</code></p>
 
