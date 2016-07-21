@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="算法,二叉树,遍历," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -57,25 +57,19 @@
 
 
 
-<meta name="description" content="我们知道前序遍历和中序遍历，或者后序遍历和中序遍历可以唯一确定一棵二叉树，但是具体是如何生成的，如何用代码去实现呢？
-题目1：由前序遍历和中序遍历求出后序遍历思路：从前往后遍历前序数组，然后到中序遍历中寻找当前访问到的元素，以它为根生成节点，将中序数组分成左右两部分，先左后右递归地给节点左右子赋值。
-首先给出节点的类定义：
-123456789class TreeNode &amp;#123;">
+<meta name="description" content="由于Java的类型擦除，对象（或者局部变量）本身不会存储任何泛型信息，但是泛型的信息会存储在Class字节码中，可以通过反射去获取到它们。比如下代码：
+1234567class Cls&amp;lt;T&amp;gt; extends ArrayList&amp;lt;Integer&amp;gt; implements List&amp;lt;Integer&amp;gt;&amp;#123;  List&amp;lt;String&amp;gt; field;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="由前序遍历，中序遍历和后序遍历确定一棵二叉树">
-<meta property="og:url" content="http://ukiy2010.github.io/2016/04/14/由前序遍历，中序遍历和后序遍历确定一棵二叉树/index.html">
+<meta property="og:title" content="Java利用反射获取泛型参数信息">
+<meta property="og:url" content="http://ukiy2010.github.io/2016/07/21/Java利用反射获取泛型参数信息/index.html">
 <meta property="og:site_name" content="UKIY'S HOME">
-<meta property="og:description" content="我们知道前序遍历和中序遍历，或者后序遍历和中序遍历可以唯一确定一棵二叉树，但是具体是如何生成的，如何用代码去实现呢？
-题目1：由前序遍历和中序遍历求出后序遍历思路：从前往后遍历前序数组，然后到中序遍历中寻找当前访问到的元素，以它为根生成节点，将中序数组分成左右两部分，先左后右递归地给节点左右子赋值。
-首先给出节点的类定义：
-123456789class TreeNode &amp;#123;">
-<meta property="og:updated_time" content="2016-04-14T12:19:25.000Z">
+<meta property="og:description" content="由于Java的类型擦除，对象（或者局部变量）本身不会存储任何泛型信息，但是泛型的信息会存储在Class字节码中，可以通过反射去获取到它们。比如下代码：
+1234567class Cls&amp;lt;T&amp;gt; extends ArrayList&amp;lt;Integer&amp;gt; implements List&amp;lt;Integer&amp;gt;&amp;#123;  List&amp;lt;String&amp;gt; field;">
+<meta property="og:updated_time" content="2016-07-21T11:49:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="由前序遍历，中序遍历和后序遍历确定一棵二叉树">
-<meta name="twitter:description" content="我们知道前序遍历和中序遍历，或者后序遍历和中序遍历可以唯一确定一棵二叉树，但是具体是如何生成的，如何用代码去实现呢？
-题目1：由前序遍历和中序遍历求出后序遍历思路：从前往后遍历前序数组，然后到中序遍历中寻找当前访问到的元素，以它为根生成节点，将中序数组分成左右两部分，先左后右递归地给节点左右子赋值。
-首先给出节点的类定义：
-123456789class TreeNode &amp;#123;">
+<meta name="twitter:title" content="Java利用反射获取泛型参数信息">
+<meta name="twitter:description" content="由于Java的类型擦除，对象（或者局部变量）本身不会存储任何泛型信息，但是泛型的信息会存储在Class字节码中，可以通过反射去获取到它们。比如下代码：
+1234567class Cls&amp;lt;T&amp;gt; extends ArrayList&amp;lt;Integer&amp;gt; implements List&amp;lt;Integer&amp;gt;&amp;#123;  List&amp;lt;String&amp;gt; field;">
 
 
 
@@ -93,7 +87,7 @@
   };
 </script>
 
-  <title> 由前序遍历，中序遍历和后序遍历确定一棵二叉树 | UKIY'S HOME </title>
+  <title> Java利用反射获取泛型参数信息 | UKIY'S HOME </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -213,7 +207,7 @@
             
             
               
-                由前序遍历，中序遍历和后序遍历确定一棵二叉树
+                Java利用反射获取泛型参数信息
               
             
           </h1>
@@ -225,8 +219,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-14T20:15:44+08:00" content="2016-04-14">
-              2016-04-14
+            <time itemprop="dateCreated" datetime="2016-07-21T19:47:50+08:00" content="2016-07-21">
+              2016-07-21
             </time>
           </span>
 
@@ -236,8 +230,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/14/由前序遍历，中序遍历和后序遍历确定一棵二叉树/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/14/由前序遍历，中序遍历和后序遍历确定一棵二叉树/" itemprop="commentsCount"></span>
+                <a href="/2016/07/21/Java利用反射获取泛型参数信息/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/21/Java利用反射获取泛型参数信息/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -259,14 +253,43 @@
       
 
       
-        <p>我们知道前序遍历和中序遍历，或者后序遍历和中序遍历可以唯一确定一棵二叉树，但是具体是如何生成的，如何用代码去实现呢？</p>
-<h3 id="题目1：由前序遍历和中序遍历求出后序遍历"><a href="#题目1：由前序遍历和中序遍历求出后序遍历" class="headerlink" title="题目1：由前序遍历和中序遍历求出后序遍历"></a>题目1：由前序遍历和中序遍历求出后序遍历</h3><p>思路：<strong>从前往后</strong>遍历前序数组，然后到中序遍历中寻找当前访问到的元素，以它为根生成节点，将中序数组分成左右两部分，<strong>先左后右</strong>递归地给节点左右子赋值。</p>
-<p>首先给出节点的类定义：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span> </span>&#123;</span><br><span class="line">       TreeNode left;</span><br><span class="line">       TreeNode right;</span><br><span class="line">       <span class="keyword">int</span> val;</span><br><span class="line"></span><br><span class="line">       TreeNode(<span class="keyword">int</span> v) &#123;</span><br><span class="line">           val = v;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<p>由前序和中序递归生成二叉树：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] pre = &#123;<span class="number">9</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">4</span>, <span class="number">7</span>, <span class="number">8</span>&#125;;</span><br><span class="line"><span class="keyword">int</span>[] mid = &#123;<span class="number">9</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">7</span>, <span class="number">4</span>, <span class="number">8</span>, <span class="number">5</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> pre_i = <span class="number">0</span>;<span class="comment">//前序遍历的索引</span></span><br><span class="line"><span class="function">TreeNode <span class="title">buildTreeWithPreAndMid</span><span class="params">(<span class="keyword">int</span> start, <span class="keyword">int</span> end)</span> </span>&#123;<span class="comment">//参数分别代表中序数组子数组的起始结束位置</span></span><br><span class="line">    <span class="keyword">if</span> (start &gt;= end) <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    TreeNode tn = <span class="keyword">new</span> TreeNode(pre[pre_i]);</span><br><span class="line">    pre_i++;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = start; i &lt; end; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (mid[i] == tn.val) &#123;</span><br><span class="line">            tn.left = buildTreeWithPreAndMid(start, i);</span><br><span class="line">            tn.right = buildTreeWithPreAndMid(i + <span class="number">1</span>, end);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> tn;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="题目2：由后序遍历和中序遍历求出前序遍历"><a href="#题目2：由后序遍历和中序遍历求出前序遍历" class="headerlink" title="题目2：由后序遍历和中序遍历求出前序遍历"></a>题目2：由后序遍历和中序遍历求出前序遍历</h3><p>思路：和前面类似，<strong>从后往前</strong>遍历后序数组，然后到中序遍历中寻找当前访问到的元素，以它为根生成节点，将中序数组分成左右两部分，<strong>先右后左</strong>递归地给节点左右子赋值。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] mid = &#123;<span class="number">9</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">7</span>, <span class="number">4</span>, <span class="number">8</span>, <span class="number">5</span>&#125;;</span><br><span class="line"><span class="keyword">int</span>[] post = &#123;<span class="number">3</span>, <span class="number">2</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">9</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> post_i = post.length - <span class="number">1</span>;<span class="comment">//后序遍历的索引</span></span><br><span class="line"><span class="function">TreeNode <span class="title">buildTreeWithPostAndMid</span><span class="params">(<span class="keyword">int</span> start, <span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (start &gt;= end) <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    TreeNode tn = <span class="keyword">new</span> TreeNode(post[post_i]);</span><br><span class="line">    post_i--;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = start; i &lt; end; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (mid[i] == tn.val) &#123;</span><br><span class="line">            tn.right = buildTreeWithPostAndMid(i + <span class="number">1</span>, end);</span><br><span class="line">            tn.left = buildTreeWithPostAndMid(start, i);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> tn;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p>由于Java的类型擦除，对象（或者局部变量）本身不会存储任何泛型信息，但是泛型的信息会存储在<strong>Class字节码中</strong>，可以通过<strong>反射</strong>去获取到它们。比如下代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cls</span>&lt;<span class="title">T</span>&gt; <span class="keyword">extends</span> <span class="title">ArrayList</span>&lt;<span class="title">Integer</span>&gt; <span class="keyword">implements</span> <span class="title">List</span>&lt;<span class="title">Integer</span>&gt;</span>&#123;</span><br><span class="line">  List&lt;String&gt; field;</span><br><span class="line">  &lt;V&gt; <span class="function">List&lt;String&gt; <span class="title">method</span><span class="params">(List&lt;String&gt; in)</span></span>&#123;</span><br><span class="line">    List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="keyword">return</span> list;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>你不能直接从list中获取任何泛型有关的信息，也就是说运行时不可能获得list里面存储元素的类型。（除非取出list的的元素），因为类型擦除。</p>
+<p>但是可以从<strong>类（Class，Type）</strong>，<strong>方法（Method）</strong>，<strong>字段（Field）</strong>中来获取泛型信息，还用上面的代码做例子：</p>
+<p><code>((ParameterizedType) Cls.class.getDeclaredField(&quot;field&quot;).getGenericType()).getActualTypeArguments()</code></p>
+<p>可以得到<code>String</code></p>
+<p>需要注意的是，获取到的这些泛型信息是在编译时就决定了的，不会在运行时再发生变化</p>
+<p><code>Cls.class.getTypeParameters()</code></p>
+<p><code>new Cls&lt;String&gt;().getClass().getTypeParameters()</code></p>
+<p><code>new Cls&lt;Integer&gt;().getClass().getTypeParameters()</code></p>
+<p>都是得到<code>T</code></p>
+<p>但是可以用一个小技巧从对象中获得泛型的信息：</p>
+<p><code>(ParameterizedType) new Cls&lt;String&gt;() {}.getClass().getGenericSuperclass()).getActualTypeArguments()[0]</code></p>
+<p>得到的是String，这是因为这里声明了一个继承<code>Cls&lt;String&gt;</code>的匿名内部类，这样泛型信息就保存到这个对象的类中了，相当于</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Anonymous</span> <span class="keyword">extends</span> <span class="title">Cls</span>&lt;<span class="title">String</span>&gt;</span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>这样<code>Anonymous</code>类就有<code>Cls&lt;String&gt;</code>的泛型信息了。大名鼎鼎的gson就利用了这个办法获取泛型信息，具体代码在<code>TypeToken</code>中。</p>
+<hr>
+<p>持有参数化类型的类叫做<code>ParameterizedType</code>，比如<code>List&lt;String&gt;</code>，可以从中取出参数化的类型<code>String</code></p>
+<blockquote>
+<p><code>ParameterizedType</code>和<code>Class</code>都继承自Type，<code>class.getSuperclass()</code>和<code>class.getGenericSuperclass()</code>的区别是，前者返回Class，后者返回Type，举例来说<code>Cls.class.getSuperclass()</code>得到的是ArrayList，<code>Cls.class.getGenericSuperclass()</code>得到的是<code>ArrayList&lt;Integer&gt;</code>，强制转换成<code>ParameterizedType</code>后可以得到泛型参数的信息。</p>
+</blockquote>
+<p>获取本类的类型参数，返回<code>T</code>：</p>
+<p><code>Cls.class.getTypeParameters()[0]</code></p>
+<p>获取父类的类型参数，返回<code>Integer</code>：</p>
+<p><code>((ParameterizedType)Cls.class.getGenericSuperclass()).getActualTypeArguments()[0]</code></p>
+<p>获取所继承接口（第i个）的类型参数，返回<code>Integer</code>：</p>
+<p><code>((ParameterizedType) Cls.class.getGenericInterfaces()[i]).getActualTypeArguments()[0]</code></p>
+<p>获取方法参数（第i个）的类型参数，返回<code>String</code>：</p>
+<p><code>((ParameterizedType) getClass().getDeclaredMethod(&quot;method&quot;, List.class).getGenericParameterTypes()[i]).getActualTypeArguments()[0]</code></p>
+<p>获取方法返回值的类型参数，返回<code>String</code>：</p>
+<p><code>((ParameterizedType) getClass().getDeclaredMethod(&quot;method&quot;, List.class).getGenericReturnType()).getActualTypeArguments()[0]</code></p>
+<p>获取方法的类型参数，返回<code>V</code>：</p>
+<p><code>getClass().getDeclaredMethod(&quot;method&quot;, List.class).getTypeParameters()[0]</code></p>
+<p>获取字段的类型参数，返回<code>String</code>：</p>
+<p><code>((ParameterizedType) Cls.class.getDeclaredField(&quot;field&quot;).getGenericType()).getActualTypeArguments()[0]</code></p>
+<hr>
+<p>在获取方法的时候<code>method.getDeclaredMethod(&quot;method&quot;, List.class)</code>第二个参数，表示方法的参数类型列表，如果是基本类型则用<code>XX.TYPE</code>或者<code>xx.class</code>，例如：<code>int</code>对应<code>Integer.TYPE</code>或者<code>int.class</code>，<code>long</code>对应<code>Long.TYPE</code>或者<code>long.class</code></p>
 
       
     </div>
@@ -279,32 +302,18 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/算法/" rel="tag">#算法</a>
-          
-            <a href="/tags/二叉树/" rel="tag">#二叉树</a>
-          
-            <a href="/tags/遍历/" rel="tag">#遍历</a>
-          
-        </div>
-      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/03/19/理解Service两种启动方式/" rel="next" title="理解Service两种启动方式">
-                <i class="fa fa-chevron-left"></i> 理解Service两种启动方式
+              <a href="/2016/07/18/RecyclerView和ListView的比较/" rel="next" title="RecyclerView和ListView的比较">
+                <i class="fa fa-chevron-left"></i> RecyclerView和ListView的比较
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/04/18/回溯法+交换实现的数组全排列/" rel="prev" title="回溯法+交换实现的数组全排列">
-                回溯法+交换实现的数组全排列 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -330,8 +339,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/04/14/由前序遍历，中序遍历和后序遍历确定一棵二叉树/"
-           data-title="由前序遍历，中序遍历和后序遍历确定一棵二叉树" data-url="http://ukiy2010.github.io/2016/04/14/由前序遍历，中序遍历和后序遍历确定一棵二叉树/">
+      <div class="ds-thread" data-thread-key="2016/07/21/Java利用反射获取泛型参数信息/"
+           data-title="Java利用反射获取泛型参数信息" data-url="http://ukiy2010.github.io/2016/07/21/Java利用反射获取泛型参数信息/">
       </div>
     
   </div>
@@ -420,7 +429,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目1：由前序遍历和中序遍历求出后序遍历"><span class="nav-number">1.</span> <span class="nav-text">题目1：由前序遍历和中序遍历求出后序遍历</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题目2：由后序遍历和中序遍历求出前序遍历"><span class="nav-number">2.</span> <span class="nav-text">题目2：由后序遍历和中序遍历求出前序遍历</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
