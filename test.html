@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>掉起QB浏览器</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        button {
+            display: block;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <button id='btn2'>QQ打开浏览器</button>
+    <button id='btn3'>设置wxconfig</button>
+    <button id='btn4'>WX打开浏览器</button>
+    <button id='btn5'>掉起浏览器</button>
+    <button id='btn6'>检测是否安装过QQ浏览器</button> -->
+
+    <button id='btn9'>微信下载APP</button>
+    <script type="text/javascript">
+        // var UA = window.navigator.userAgent;
+        // var isWeChat = /MicroMessenger/i.test(UA);
+        // var isMobileQQ = / QQ\//i.test(UA);
+        // var isQZone = /Qzone/i.test(UA);
+        // var isTBS = / TBS\//i.test(UA);
+        // var isMiniQB = / MiniQB\//i.test(UA);
+        // var notQBCore = !isWeChat && !isMobileQQ && !isQZone && !isTBS;
+        // var isQQBrowser = /MQQBrowser/i.test(UA) && notQBCore;
+        // var iosVersion = /iphone os ([0-9]+)_/ig.exec(UA);
+
+        // // 检测系统
+        // var Detect = {
+        //     isAndroid: /android/ig.test(UA),
+        //     isIos: /iphone|ipod/ig.test(UA),
+        //     isQb: isQQBrowser,
+        //     isQQ: isMobileQQ,
+        //     isWX: isWeChat,
+        //     isQZ: isQZone,
+        //     isTBS: isTBS,
+        //     iosVer: iosVersion && iosVersion[1],
+        //     isMiniQB: isMiniQB,
+        // };
+
+        // function appendScriptJs(url, callback) {
+        //     var head = document.getElementsByTagName("head")[0];
+        //     var script = document.createElement('script');
+        //     script.onload = script.onreadystatechange = script.onerror = function () {
+        //         if (script && script.readyState && /^(?!(?:loaded|complete)$)/.test(script.readyState)) return;
+        //         script.onload = script.onreadystatechange = script.onerror = null;
+        //         script.src = '';
+        //         script.parentNode.removeChild(script);
+        //         script = null;
+        //         callback && callback(true);
+        //     };
+        //     script.charset = "utf-8";
+        //     script.src = url;
+        //     try {
+        //         head.appendChild(script);
+        //     } catch (exp) { }
+        // }
+
+        // if (Detect.isWX) {
+        //     var url = "//res.wx.qq.com/open/js/jweixin-1.0.0.js";
+        //     appendScriptJs(url);
+        // } else if (Detect.isQQ || Detect.isQZ) {
+        //     var url = "//pub.idqqimg.com/qqmobile/qqapi.js?_bid=154";
+        //     appendScriptJs(url);
+        // }
+
+
+        // //..手Q 
+        // document.getElementById('btn2').onclick = function () {
+        //     if (Detect.isQQ) {
+        //         //var urlNew = 'http://quan.qq.com/post/q_13197989393_1521716064340129/2126282324_9783381533729700168';
+        //         var urlNew = 'qb://usercenter';
+
+        //         var ret = mqq.app.launchAppWithTokens({
+        //             appID: "100446242x",
+        //             packageName: 'com.tencent.mtt',
+        //             paramsStr: "?url=" + urlNew,
+        //             flags: "67108864"
+        //         });
+        //         console.log(ret);
+
+        //     }
+        // }
+
+
+
+
+        // //..微信
+        // var isWxReady = false;
+        // function wxReady() {
+        //     if (window.QBExt && window.QBExt.isSupportInvokeQBSameLayer() && typeof wx !== 'undefined') {
+        //         wx.closeWindow();
+        //         return;
+        //     }
+        //     isWxReady = true;
+        // }
+        // function initShareWeiXin() {
+        //     isWxReady = true;
+        //     let appid = 'wxd0eac0404834d7ee';
+        //     let timestamp = new Date().getTime();
+        //     let config = {
+        //         debug: false,
+        //         appId: appid,
+        //         timestamp: timestamp,
+        //         nonceStr: timestamp + '',
+        //         signature: '',
+        //         beta: true,
+        //         jsApiList: [
+        //             'onMenuShareWeibo'
+        //         ]
+        //     };
+
+        //     if (typeof wx !== 'undefined') {
+        //         wx.config(config);
+        //         wx.ready(wxReady);
+        //     }
+        // };
+
+        // document.getElementById('btn3').onclick = function () {
+        //     alert(33);
+        //     if (Detect.isWX) {
+        //         initShareWeiXin();
+        //         setTimeout(() => {
+        //             console.log(wx);
+        //             console.log(wx.config);
+
+        //             wx.checkJsApi({
+        //                 jsApiList: [
+        //                     'launchApplication'
+        //                 ],
+        //                 success: function (res) {
+        //                     alert(JSON.stringify(res));
+        //                 }
+        //             })
+        //         }, 2000);
+        //     }
+        // }
+
+        // document.getElementById('btn4').onclick = function () {
+        //     var urlNew = 'http://quan.qq.com/post/q_13197989393_1521716064340129/2126282324_9783381533729700168';
+        //     wx.invoke('launchApplication', {
+        //         "appID": "wx64f9cf5b17af074d",
+        //         "parameter": urlNew,
+        //         "extInfo": "",
+        //     }, function (res) {
+        //         console.log(res);
+        //     });
+        // }
+
+
+        //..打开
+        // document.getElementById('btn7').onclick = function () {
+        //     // window.SQB.openQB('http://quan.qq.com/', function (param) {
+        //     //     console.log(param);
+        //     // })
+        //     //var url = "http://quan8.sparta.html5.qq.com/node/novelWelfare"
+        //     var url = "https://quan.qq.com/novelWelfare,backurl=qb://home/feeds?tab=1";
+
+        //     window.SQB.openQb({
+        //         url,
+        //         ct: "circle"
+        //     });
+        // }
+
+        // //..检测
+        // document.getElementById('btn8').onclick = function () {
+        //     window.SQB.checkQB(function (param) {
+        //         console.log(param);
+        //     })
+        // }
+        //..下载
+        // var count = 100;
+        // function mark() {
+        //     count --; 
+        //     console.log(count);
+        //     if(count >= 0) window.requestAnimationFrame(mark);
+        // }
+        // document.getElementById('btn5').onclick = function () {
+        //     // window.requestAnimationFrame(mark);
+        //     // return;
+        //     // if(!(window.SQB.Detect.isAndroid && window.SQB.Detect.isWX)){
+        //     //     alert('该方法只支持android微信场景，其他按以前的location.href方式');
+        //     // }
+        //     //http://appchannel.sparta.html5.qq.com/package?app=qqbrowser&channel=10001  //获取url和md5
+         
+
+        //     var ret = window.SQB.getDownloadUrlAndMd5({app:'qqbrowser',channel:'10817'});
+        //     console.log(ret);
+        //     if(ret && ret.path && ret.md5){
+        //         var options = {
+        //             taskName: "QQ浏览器-腾讯网卡,全网免流量",
+        //             apkUrl: ret.path,
+        //             apkMd5: ret.md5,
+        //             logo: "http://res.imtt.qq.com/tagapp/qblogo_android_512.png",
+        //             process: function(res){
+        //                 console.log('process=', res);
+        //             },
+        //             success: function(res){
+        //                 console.log('success=', res);
+        //             },
+        //             error: function(res){
+        //                 console.log('error=', res);
+        //             }
+        //         }
+        //         window.SQB.wxDownload(options);
+        //         return;
+        //     }
+        //     location.href = 'http://appchannel.html5.qq.com/directdown?app=qqbrowser&channel=10817';
+        //     return;
+
+        //     var options = {
+        //         taskName: "腾讯微博",
+        //         // apkUrl: "http://softfile.3g.qq.com/msoft/180/2104/2104/WBlog_4.2.1_100000024_131210163458a.apk",
+        //         // apkMd5: "31C49560B20057ECBB4C7C52D35B00DB",
+        //         apkUrl: "https://soft.imtt.qq.com/browser/21test/qqbrowser_…_10001.apk?pkg_name=com.tencent.mtt&app=qqbrowser",
+        //         apkMd5: "7e2ce51464a6c840ca7e640ae09b5cff",
+        //         logo: "http://res.imtt.qq.com/tagapp/img/loong/avater/1.jpg",
+        //         process: function(res){
+        //             console.log('process=', res);
+        //         },
+        //         success: function(res){
+        //             console.log('success=', res);
+        //         },
+        //         error: function(res){
+        //             console.log('error=', res);
+        //         }
+        //     }
+        //     window.SQB.wxDownload(options);
+        // }
+
+        //..旧的下载方式
+        // document.getElementById('btn6').onclick = function () {
+
+        //     // if (window.SQB.Detect.isIos) {
+        //     //     location.href = `https://itunes.apple.com/app/apple-store/id370139302?pt=69276&ct=10087&mt=8`;
+        //     // } else {
+        //     //     location.href = 'http://appchannel.html5.qq.com/directdown?app=qqbrowser&channel=10001';
+        //     // }
+            
+        //     location.href = 'https://appchannel.html5.qq.com/directdown?app=xfvideo&channel=11202';
+        // }
+        document.getElementById('btn9').onclick = function () {
+            console.log(WeixinJSBridge);
+
+            WeixinJSBridge.invoke("addDownloadTask", {task_name: "抖音",task_url: "http://s4.pstatp.com/package/apk/aweme/aweme_aweGW_v2.5.0_70e4746.apk?v=1534841963",file_md5: "facadb794ed3f053b7a7188b340e7a89"}, function(t) {
+                console.log(t);
+            })
+            // WeixinJSBridge.invoke("addDownloadTask", { task_name: "QQ浏览器", task_url: "http://appchannel.html5.qq.com/directdown?app=qqbrowser&channel=10001", file_md5: "31C49560B20057ECBB4C7C52D35B00DB", thumb_url: "http://res.imtt.qq.com/tagapp/img/loong/avater/1.jpg" }, function (t) { })
+
+
+
+            // WeixinJSBridge.invoke("addDownloadTask", {
+            //     task_name: "QQ浏览器",
+            //     task_url: "http://appchannel.html5.qq.com/directdown?app=qqbrowser&channel=10001",
+            //     file_md5: "31C49560B20057ECBB4C7C52D35B00DB",
+            //     thumb_url: "http://res.imtt.qq.com/tagapp/img/loong/avater/1.jpg"
+            // }, function (t) {
+
+            // })
+
+        }
+
+        // document.getElementById('btn10').onclick = function () {
+        //     console.log('WxDownload=', WxDownload);
+        //     var options = {
+        //         task_name: "腾讯微博",
+        //         downloadApkUrl: "http://softfile.3g.qq.com/msoft/180/2104/2104/WBlog_4.2.1_100000024_131210163458a.apk",
+        //         downloadApkMd5: "31C49560B20057ECBB4C7C52D35B00DB",
+        //         downloadImageUrl: "http://res.imtt.qq.com/tagapp/img/loong/avater/1.jpg"
+        //     }
+        //     var d = new WxDownload(options);
+        //     console.log('ddd=', d.startDownload);
+        // }
+
+        // VConsole && new VConsole();
+
+    </script>
+</body>
+
+</html>
